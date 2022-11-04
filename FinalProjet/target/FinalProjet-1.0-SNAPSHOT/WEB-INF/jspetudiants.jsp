@@ -13,6 +13,11 @@
         <style>
             table, caption, th, td {
                 border: 1px solid;
+                text-align: center;
+            }
+            img {
+                width : 100%;
+                height : 100%;
             }
         </style>
         <title>Liste étudiants</title>
@@ -26,15 +31,17 @@
                   <th>id</th>
                   <th>nom</th>
                   <th>moyenne</th>
+                  <th>image</th>
                 </tr>
             </thead>
             <tbody>
                 
                     <c:forEach items="${ listeEtudiants }" var="etudiant">
                         <tr>
-                        <td><c:out value="${ etudiant.getId() }" /></td>
+                        <td width="40"><c:out value="${ etudiant.getId() }" /></td>
                         <td><c:out value="${ etudiant.getNom() }" /></td>
                         <td><c:out value="${ etudiant.getMoyenne() }" /></td>
+                        <td width="150" height = "150"><img src="images/${ etudiant.getImage() }"></td>
                         </tr>
                     </c:forEach>
                 

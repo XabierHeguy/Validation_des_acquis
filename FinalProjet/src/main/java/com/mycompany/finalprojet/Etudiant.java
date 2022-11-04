@@ -13,11 +13,13 @@ public class Etudiant {
     private String id;
     private String nom;
     private double moyenne;
+    private String image;
 
-    public Etudiant(String id, String nom, double moyenne) {
+    public Etudiant(String id, String nom, double moyenne, String image) {
         this.id = id;
         this.nom = nom;
         this.moyenne = moyenne;
+        this.image = image;
     }
 
     public String getId() {
@@ -45,10 +47,15 @@ public class Etudiant {
     }
     
     public boolean equals(Etudiant etudiant){
-        if(etudiant.getId().equals(this.getId()))
-            return true;
-        else
-            return false;
+        return etudiant.getId().equals(this.getId());
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getImage() {
+        return image;
     }
     
 }
