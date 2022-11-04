@@ -5,7 +5,14 @@
 package com.mycompany.finalprojet;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -38,5 +45,35 @@ public class AffichageEtudiants extends HttpServlet {
             throws ServletException, IOException {
 
     }
+    
+    public  void init(ServletConfig config) {
+	
+   String url = config.getInitParameter("http://127.0.0.1:51748") ;
+   String login = config.getInitParameter("admin") ;
+   String passwd = config.getInitParameter("s7q3aeic2!") ;
+   Statement stm = null;
+        try {
+            Class.forName("org.postgresql.Driver");
+            System.out.println("Driver Postgresql chargé");
+        } catch (ClassNotFoundException ex) {
+            System.out.println("Driver Postgresql non trouvé");
+            Logger.getLogger(AffichageEtudiants.class.getName()).log(Level.SEVERE, null, ex);
+        }
+	
+   Connection con;
+        try {
+            con = DriverManager.getConnection(url, login, passwd);
+            System.out.println("Connexion à " + url + " établie");
+            stm = con.createStatement();
+        } catch (SQLException ex) {
+            System.out.println("Connexion à " + url + " impossible");
+            Logger.getLogger(AffichageEtudiants.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            requete = "CREATE DATABASE etudiants;"
+        }
+	
+  // config.getServletContext().setAttribute("db-connection", con) ;
+}
 
 }
